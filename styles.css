@@ -1,0 +1,39 @@
+div{ 
+    text-align: center; 
+    font-family: sans-serif;
+}
+button{ 
+    border: none; 
+    padding: 10px; 
+    cursor: pointer; 
+    margin: 10px; 
+    background-color: darkred;
+    color: #fff;
+}
+button:hover{ background-color: gray; }
+.active{ background-color: green;}
+table{ 
+    width: 100%; 
+    margin-top: 20px; 
+    border-collapse: collapse; 
+}
+table td{ 
+    border: 1px solid gray; 
+    padding: 10px; 
+    border: none; 
+    text-align: right; 
+    width: 5%;} 
+table td span{ 
+    font-style: italic; 
+    color: #777; 
+} 
+table tr:nth-child(odd){ background-color: #c9c9c9; }
+th{
+    background-color: #333; 
+    color: #fff; 
+    padding: 5px; 
+    text-align: right; 
+    padding: 10px;}
+.rowLead{ text-align: left; width: 15%;}
+input[type=number]{ padding: 10px; margin: 5px;}
+select{ padding: 10px; }

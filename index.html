@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <title>Wholesale pricing matrix</title>
+        <link href='styles.css' rel="stylesheet" />
+    </head>
+    <body>
+        <div id="pricing_matrix">
+            <br />
+            <h2>Wholesale pricing matrix</h2>
+            <p id='descr'></p>
+            <br />
+            <div id="pricing_table"> </div>
+            <br /><br />
+            <div id='options'>
+                Change size
+                <select id="size_select"></select>
+                <button id="stakesToggle">No frames / press to include frames</button>
+                <button id="colorToggle">White stock / Press for color other than white</button> 
+
+                <br /><br />
+
+                Markup percent <input type='number' id="markup" placeholder="Resale price"> 
+                <button id="increasePrice">Apply markup</button>
+            </div>
+            <p>The wholesale pricing matrix is for reference only. Prices do not include shipping charges and taxes.  </p>
+        </div>
+
+        <script src="data.js"></script>
+        <script src="mainjs.js"></script>
+    </body>
+</html>
