@@ -1,8 +1,8 @@
-        let setSize = `12"x18"`;
+        let setSize = '12in. x 18in. ';
         let stakes = false;
         let premColor = false;
         let incrPrice = 0;
-        let descr = [setSize,  `White stock`,  `No frames`, `No mark up`];
+        let descr = [setSize,  'White stock',  'No frames', 'No mark up'];
 
         const stakesToggle = document.getElementById("stakesToggle");
         const colorToggle = document.getElementById("colorToggle");
@@ -13,9 +13,10 @@
         
         function updateDescr(){
             let d="- ";
-            descr.forEach(x=>{
-                d += x + " - " ;
-            });
+
+            for(let i=0; i< descr.length; i++){
+                d += descr[i] + " - " ;
+            }
             document.getElementById("descr").innerHTML = d;
         }
         function toggleStakes(){
@@ -62,57 +63,61 @@
             
             let fullPrice = price * pricing[0][1][position];
 
-            return `${parseFloat(price).toFixed(2)}<span><br />${parseFloat(fullPrice).toFixed(2)}</span>`;
+            return parseFloat(price).toFixed(2) + '<span><br />' + parseFloat(fullPrice).toFixed(2) + '</span>';
         }
 
         //Populates list of available sizes
-        const SizeList = pricing.map( (priceList, index) =>{
-           return index > 0 ? `<option key="${index}" value='${priceList[0]}'> ${priceList[0]} </option>` : null;
-        });
+        const SizeList = function(){
+            let t = '';
+            for(let i=1; i< pricing.length; i++){
+                t +=  '<option value="' + pricing[i][0] + '">' + pricing[i][0] + '</option>';
+            }
+            return t;
+        } 
     
         //Populates pricelist
-        const PopPricelist = () =>{
-            let priceTable = `<table>`;
-            let tableHeader = ``;
+        const PopPricelist = function(){ 
+            let priceTable = '<table>';
+            let tableHeader = '';
                 
-            for(let i=0; i<pricing.length; i++){  
+            for(let i=0; i<pricing.length; i++){
                 // Create header - pricebreak row
                 if( i === 0){
-                   for( let a=0; a< pricing[i][1].length; a++ ){ tableHeader += `<th>${ pricing[i][1][a] }</th>`; }
-                    priceTable += `<tr><th class='rowLead'>${setSize} Single Sided</th> ${tableHeader} </tr>`;
+                   for( let a=0; a< pricing[i][1].length; a++ ){ tableHeader += '<th>' + pricing[i][1][a] + '</th>'; }
+                    priceTable += '<tr><th class="rowLead">' + setSize + ' Single Sided</th>' + tableHeader + '</tr>';
                 }
-                
+                console.log(setSize);  
                 // Creates rest of table data
                 let colCount = 1;
                 let rowCount = 1;
                 if( pricing[i][0] === setSize ){ 
                     for(let z=1; z<pricing[i].length; z++){
-                        priceTable += `<tr>`;
-                        priceTable += `<td class="rowLead"> ${colCount}-color </td>`;
+                        priceTable += '<tr>';
+                        priceTable += '<td class="rowLead"> ' + colCount + '-color </td>';
                             for(let x=0; x< pricing[i][z].length; x++){
-                                priceTable += `<td>${ PriceAnalysis( pricing[i][z][x], x) } </td>`; //<---------------- Price analysis
+                                priceTable += '<td>' + PriceAnalysis( pricing[i][z][x], x) + '</td>'; //<---------------- Price analysis
                             }
-                        priceTable += `</tr>`;
+                        priceTable += '</tr>';
                         colCount++;
                         rowCount++;
                         if(colCount === 5){colCount = 1; }
-                        if(rowCount === 5) { priceTable += `</table><table><tr><th class='rowLead'> ${setSize} Double Sided</th>${tableHeader}</tr>`; }
+                        if(rowCount === 5) { priceTable += '</table><table><tr><th class="rowLead"> ' + setSize + ' Double Sided</th> ' + tableHeader + '</tr>'; }
                     }
                 }
 
             
 
             }
-            priceTable += `</table>`;
+            priceTable += '</table>';
             document.getElementById("pricing_table").innerHTML = priceTable;
         }
 
 
         PopPricelist();
         updateDescr()
-        document.getElementById(`size_select`).innerHTML = SizeList;    
+        document.getElementById('size_select').innerHTML = SizeList();    
         
-        stakesToggle.addEventListener("click", ()=> toggleStakes());
-        colorToggle.addEventListener("click", ()=> togglepremColor());
-        changeSize.addEventListener("change", (e) => selectSize(e));
-        increasePrice.addEventListener("click", () => applyMarkup());
+        stakesToggle.addEventListener("click", function(){ toggleStakes()});
+        colorToggle.addEventListener("click", function(){ togglepremColor()});
+        changeSize.addEventListener("change", function(e){ selectSize(e)});
+        increasePrice.addEventListener("click", function(){ applyMarkup()});

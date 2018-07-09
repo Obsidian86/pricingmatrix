@@ -1,6 +1,9 @@
+#pricing_matrix{ 
+    font-size: 17px;
+}
 div{ 
     text-align: center; 
-    font-family: sans-serif;
+    font-family: sans-serif; 
 }
 button{ 
     border: none; 
@@ -22,7 +25,9 @@ table td{
     padding: 10px; 
     border: none; 
     text-align: right; 
-    width: 5%;} 
+    width: 5%;
+    font-size: 1em;
+} 
 table td span{ 
     font-style: italic; 
     color: #777; 
